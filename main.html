@@ -1,16 +1,50 @@
 <!DOCTYPE html>
-
 <html>
-
 <head>
-	<link rel="stylesheet" href="styles.css">
+    <title>Grocery List</title>
 </head>
-
 <body>
-	<!-- the entire body must be written by student -->
-    <script type="text/javascript" src="./script.js">
+
+<table id="grocery-list">
+    <tr>
+        <th>Item</th>
+        <th>Price</th>
+    </tr>
+    <tr>
+        <td>Bread</td>
+        <td data-ns-test="prices">2.50</td>
+    </tr>
+    <tr>
+        <td>Milk</td>
+        <td data-ns-test="prices">1.80</td>
+    </tr>
+    <tr>
+        <td>Cheese</td>
+        <td data-ns-test="prices">3.25</td>
+    </tr>
+</table>
+
+<script>
+    // Get all elements with data-ns-test="prices"
+    const prices = document.querySelectorAll('[data-ns-test="prices"]');
+    
+    let totalPrice = 0;
+    // Loop through each price element and add its value to totalPrice
+    prices.forEach(price => {
+        totalPrice += parseFloat(price.textContent);
+    });
+    
+    // Create a new row for displaying the total price
+    const totalRow = document.createElement('tr');
+    const totalCell = document.createElement('td');
+    totalCell.setAttribute('colspan', '2');
+    totalCell.textContent = 'Total Price: $' + totalPrice.toFixed(2);
+    totalRow.appendChild(totalCell);
+    
+    // Append the total row to the table
+    const table = document.getElementById('grocery-list');
+    table.appendChild(totalRow);
 </script>
 
 </body>
-
 </html>
